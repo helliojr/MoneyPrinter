@@ -42,6 +42,8 @@ GENERATING = False
 @app.route("/api/generate", methods=["POST"])
 def generate():
     try:
+        # avfonts = TextClip.list('font')
+        # avfonts
         # Set global variable
         global GENERATING
         GENERATING = True
@@ -171,8 +173,8 @@ def generate():
             try:
                 saved_video_path = save_video(video_url)
                 video_paths.append(saved_video_path)
-            except Exception:
-                print(colored(f"[-] Could not download video: {video_url}", "red"))
+            except Exception as e:
+                print(colored(f"[-] Could not download video: {video_url} {e}", "red"))
 
         # Let user know
         print(colored("[+] Videos downloaded!", "green"))
@@ -248,6 +250,8 @@ def generate():
             # Start Youtube Uploader
             # Check if the CLIENT_SECRETS_FILE exists
             client_secrets_file = os.path.abspath("./client_secret.json")
+            print(os.path.abspath("./client_secret.json"))
+
             SKIP_YT_UPLOAD = False
             if not os.path.exists(client_secrets_file):
                 SKIP_YT_UPLOAD = True
@@ -306,8 +310,10 @@ def generate():
             video_clip.write_videofile(f"../{final_video_path}", threads=n_threads or 1)
 
 
+        full_final_video_path = os.path.abspath(f"../temp/{final_video_path}")
         # Let user know
         print(colored(f"[+] Video generated: {final_video_path}!", "green"))
+        print(colored(f"[+] Video generated: {full_final_video_path}!", "green"))
 
         # Stop FFMPEG processes
         if os.name == "nt":

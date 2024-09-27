@@ -44,9 +44,9 @@ def generate_response(prompt: str, ai_model: str) -> str:
             messages=[{"role": "user", "content": prompt}],
         ).choices[0].message.content
 
-    elif ai_model in ["gpt3.5-turbo", "gpt4"]:
+    elif ai_model in ["gpt-4o-mini", "gpt4"]:
 
-        model_name = "gpt-3.5-turbo" if ai_model == "gpt3.5-turbo" else "gpt-4-1106-preview"
+        model_name = "gpt-4o-mini" if ai_model == "gpt-4o-mini" else "gpt-4"
 
         response = openai.chat.completions.create(
 

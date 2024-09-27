@@ -31,8 +31,13 @@ def save_video(video_url: str, directory: str = "../temp") -> str:
     """
     video_id = uuid.uuid4()
     video_path = f"{directory}/{video_id}.mp4"
+
+    headers = {
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15"
+    }
+    
     with open(video_path, "wb") as f:
-        f.write(requests.get(video_url).content)
+        f.write(requests.get(video_url, headers=headers).content)
 
     return video_path
 
@@ -222,11 +227,11 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
     # Make a generator that returns a TextClip when called with consecutive
     generator = lambda txt: TextClip(
         txt,
-        font="../fonts/bold_font.ttf",
+        font="DIN-Alternate-Bold",
         fontsize=100,
         color=text_color,
         stroke_color="black",
-        stroke_width=5,
+        stroke_width=2,
     )
 
     # Split the subtitles position into horizontal and vertical
@@ -243,6 +248,6 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
     audio = AudioFileClip(tts_path)
     result = result.set_audio(audio)
 
-    result.write_videofile("../temp/output.mp4", threads=threads or 2)
+    result.write_videofile("../temp/output.mp4", threads=threads or 2, audio_codec="aac")
 
     return "output.mp4"

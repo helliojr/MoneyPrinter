@@ -1,5 +1,5 @@
 import requests
-
+import urllib.parse
 from typing import List
 from termcolor import colored
 
@@ -14,17 +14,31 @@ def search_for_stock_videos(query: str, api_key: str, it: int, min_dur: int) -> 
     Returns:
         List[str]: A list of stock videos.
     """
+
+    base_url = 'https://api.pexels.com/videos/'
     
     # Build headers
     headers = {
-        "Authorization": api_key
+        "Authorization": api_key,
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15"
     }
 
+    params = {'query': query, 'per_page': it}
+
+    r  = requests.get(base_url + 'search', headers=headers, params=params)
+
+    if r.status_code == 200:
+        response = r.json()
+    else:
+        print("faile to fetch the images", response.status_code)
+        return []
+
     # Build URL
-    qurl = f"https://api.pexels.com/videos/search?query={query}&per_page={it}"
+    # encoded_query = urllib.parse.quote(query)
+    # qurl = f"{base_url}/videos/search?query={query.encode()}&per_page={it}"
 
     # Send the request
-    r = requests.get(qurl, headers=headers)
+    # r = requests.get(qurl, headers=headers)
 
     # Parse the response
     response = r.json()
