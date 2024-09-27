@@ -25,13 +25,13 @@
     <div class="flex justify-center mt-8">
       <div class="max-w-xl flex flex-col space-y-4 w-full">
         <label for="videoSubject" class="text-blue-600">Subject</label>
-          <textarea
-              rows="3"
-              type="text"
-              name="videoSubject"
-              id="videoSubject"
-              class="border-2 border-blue-300 p-2 rounded-md focus:outline-none focus:border-blue-500"
-          ></textarea>
+        <textarea
+          rows="3"
+          type="text"
+          name="videoSubject"
+          id="videoSubject"
+          class="border-2 border-blue-300 p-2 rounded-md focus:outline-none focus:border-blue-500"
+        ></textarea>
         <button id="advancedOptionsToggle" class="text-blue-600">
           Show Advanced Options ▼
         </button>
@@ -46,8 +46,8 @@
             class="w-full border-2 border-blue-300 p-2 rounded-md focus:outline-none focus:border-blue-500"
           >
             <option value="g4f">g4f (Free)</option>
-            <option value="gpt3.5-turbo">OpenAI GPT-3.5</option>
-            <option value="gpt4">OpenAI GPT-4</option>
+            <option value="gpt-4o-mini">OpenAI GPT-4o mini</option>
+            <option value="gpt-4">OpenAI GPT-4</option>
             <option value="gemmini">Gemini Pro</option>
           </select>
           <label for="voice" class="text-blue-600">Voice</label>
@@ -115,7 +115,8 @@
             <option value="right,bottom">Right - Bottom</option>
           </select>
           <label for="subtitlesColor" class="text-blue-600"
-            >Subtitles Color</label>
+            >Subtitles Color</label
+          >
           <select
             name="subtitlesColor"
             id="subtitlesColor"
@@ -161,14 +162,14 @@
             max="100"
           />
           <label for="customPrompt" class="text-blue-600">Custom Prompt:</label>
-            <textarea
-              rows="3"
-              type="text"
-              name="customPrompt"
-              id="customPrompt"
-              class="border-2 border-blue-300 p-2 rounded-md focus:outline-none focus:border-blue-500"
-              placeholder="Only provide this option in case you want to replace the default prompt"
-            ></textarea>
+          <textarea
+            rows="3"
+            type="text"
+            name="customPrompt"
+            id="customPrompt"
+            class="border-2 border-blue-300 p-2 rounded-md focus:outline-none focus:border-blue-500"
+            placeholder="Only provide this option in case you want to replace the default prompt"
+          ></textarea>
           <label
             for="youtubeUploadToggle"
             class="flex items-center text-blue-600"
@@ -215,7 +216,6 @@
         >
           Cancel
         </button>
-
       </div>
     </div>
 
